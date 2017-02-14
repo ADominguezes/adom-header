@@ -1,0 +1,88 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`adom-header`
+Header for a website
+
+@demo demo/index.html 
+-->
+
+<dom-module id="adom-header">
+  <template>
+    <style>
+      :host {
+        
+      }
+      [hidden] {
+        display: none;
+      }
+      .container {
+        @apply(--adom-header-container);
+      }
+      .top-social {
+        width:100%;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        padding:0.5em;
+        box-sizing: border-box;
+        color: var(--adom-header-social-color, #fff);
+        background: var(--adom-header-social-background, #2ba14b);
+        @apply(--adom-header-social);
+      }
+      .social-msj {
+        -webkit-flex: 1 1 auto;
+        flex: 1 1 auto;
+      }
+      .social-icon {
+        margin-left: auto;
+      }
+      .header {
+        color: var(--adom-header-color, #fff);
+        background: var(--adom-header-background, #4184F3);
+        @apply(--adom-header);
+      }
+    </style>
+    <div class="container">
+      <template is="dom-if" if="[[socialIcons]]">
+        <div class="top-social">
+          <div class="social-msj">
+            {{socialMsj}}
+          </div>
+          <div class="social-icon">
+            {{socialIcon}}
+          </div>
+        </div>
+      </template>
+      <div class="header">
+        <h2>[[title]]</h2>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'adom-header',
+
+      properties: {
+        socialMsj: {
+          type: String
+        },
+        socialIcons: {
+          type: Boolean,
+          value: false
+        },
+        socialIcon: {
+          type: String
+        },
+        title: {
+          type: String
+        }
+      },
+
+    });
+  </script>
+</dom-module>
