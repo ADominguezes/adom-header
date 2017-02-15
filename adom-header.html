@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-image/iron-image.html">
 
 <!--
 `adom-header`
@@ -10,8 +11,11 @@ Header for a website
 <dom-module id="adom-header">
   <template>
     <style>
-      :host {
-        
+
+      :host(.social) .header{
+        -webkit-box-shadow: 0px 10px 36px -4px rgba(0,0,0,0.5);
+        -moz-box-shadow: 0px 10px 36px -4px rgba(0,0,0,0.5);
+        box-shadow: 0px 10px 36px -4px rgba(0,0,0,0.5);
       }
       [hidden] {
         display: none;
@@ -40,9 +44,25 @@ Header for a website
         margin-left: auto;
       }
       .header {
+        width:100%;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        padding:0.5em;
+        box-sizing: border-box;
         color: var(--adom-header-color, #fff);
         background: var(--adom-header-background, #4184F3);
         @apply(--adom-header);
+      }
+      .logo {
+        -webkit-flex: 1 1 auto;
+        flex: 1 1 auto;
+      }
+      .title {
+        -webkit-flex: 1 1 auto;
+        flex: 1 1 auto;
       }
     </style>
     <div class="container">
@@ -57,6 +77,9 @@ Header for a website
         </div>
       </template>
       <div class="header">
+        <template is="dom-if" if="[[isLogo]]">
+          <iron-image src="http://lorempixel.com/400/400"></iron-image>
+        </template>
         <h2>[[title]]</h2>
       </div>
     </div>
@@ -68,9 +91,15 @@ Header for a website
       is: 'adom-header',
 
       properties: {
+        /**
+         * Show a social message
+         */
         socialMsj: {
           type: String
         },
+        /**
+         * Show a toolbar social icon in top if is true.
+         */
         socialIcons: {
           type: Boolean,
           value: false
@@ -78,7 +107,16 @@ Header for a website
         socialIcon: {
           type: String
         },
+        /**
+         * Title of header.
+         */
         title: {
+          type: String
+        },
+        /**
+         * The URL of logo.
+         */
+        logoSrc: {
           type: String
         }
       },

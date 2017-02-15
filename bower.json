@@ -4,7 +4,8 @@
   "main": "adom-header.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0",
-    "adom-demo": "https://github.com/ADominguezes/adom-demo.git#^0.0.2"
+    "adom-demo": "https://github.com/ADominguezes/adom-demo.git#^0.0.2",
+    "iron-image": "PolymerElements/iron-image#^1.2.5"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
