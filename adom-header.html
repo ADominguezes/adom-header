@@ -12,16 +12,17 @@ Header for a website
   <template>
     <style>
 
-      :host(.social) .header{
-        -webkit-box-shadow: 0px 10px 36px -4px rgba(0,0,0,0.5);
-        -moz-box-shadow: 0px 10px 36px -4px rgba(0,0,0,0.5);
-        box-shadow: 0px 10px 36px -4px rgba(0,0,0,0.5);
+      :host(.social) .wrapper{
+        -webkit-box-shadow: 0px 2px 5px 1px rgba(166,166,166,0.75);
+        -moz-box-shadow: 0px 2px 5px 1px rgba(166,166,166,0.75);
+        box-shadow: 0px 2px 5px 1px rgba(166,166,166,0.75);
+        @apply(--adom-header-social-wrapper);
       }
       [hidden] {
         display: none;
       }
-      .container {
-        @apply(--adom-header-container);
+      .wrapper {
+        @apply(--adom-header-wrapper);
       }
       .top-social {
         width:100%;
@@ -54,18 +55,20 @@ Header for a website
         box-sizing: border-box;
         color: var(--adom-header-color, #fff);
         background: var(--adom-header-background, #4184F3);
-        @apply(--adom-header);
+        @apply(--adom-header-header);
       }
       .logo {
         -webkit-flex: 1 1 auto;
         flex: 1 1 auto;
+        width: 30%;
+        @apply(--adom-header-logo);
       }
-      .title {
-        -webkit-flex: 1 1 auto;
-        flex: 1 1 auto;
+      .content {
+        margin-left: auto;
+        @apply(--adom-header-content)
       }
     </style>
-    <div class="container">
+    <div class="wrapper">
       <template is="dom-if" if="[[socialIcons]]">
         <div class="top-social">
           <div class="social-msj">
@@ -77,10 +80,17 @@ Header for a website
         </div>
       </template>
       <div class="header">
-        <template is="dom-if" if="[[isLogo]]">
-          <iron-image src="http://lorempixel.com/400/400"></iron-image>
-        </template>
-        <h2>[[title]]</h2>
+        <div class="logo">
+          <template is="dom-if" if="{{logoSrc}}">
+            <iron-image src="{{logoSrc}}"></iron-image>
+          </template>
+          <template is="dom-if" if="{{title}}">
+            <h2>[[title]]</h2>
+          </template>
+        </div>
+        <div class="content">
+          <content></content>
+        </div>
       </div>
     </div>
   </template>

@@ -15,6 +15,20 @@
   <link rel="import" href="../adom-header.html">
 
   <style is="custom-style" include="demo-pages-shared-styles">
+    /*Common styles*/
+    
+    .component-info {
+      padding: 1em;
+    }
+    
+    .component-name {
+      color: #3e3e3e;
+    }
+    
+    .component-description {
+      color: #999;
+    }
+    
     .basic {
       --adom-header: {
         padding: 1em;
@@ -22,15 +36,23 @@
         background: var(--adom-header-background, #4184F3);
       }
     }
+    
     .social {
-      --adom-header: {
+      --adom-header-header: {
         padding: 1em;
         color: var(--adom-header-color, #666);
         background: var(--adom-header-background, #fff);
       }
       --adom-header-social: {
-        background: var(--adom-header-social-background, #2ba14b);
+        background: var(--adom-header-social-background, #a1ce4f);
         color: var(--adom-header-social-color, #fff)
+      }
+    }
+    
+    adom-header {
+      --adom-header-content: {
+        -webkit-flex: 1 1 auto;
+        flex: 1 1 auto;
       }
     }
   </style>
@@ -39,6 +61,10 @@
 <body>
   <adom-demo id="demo" option-selected="0">
     <div>
+      <div class="component-info">
+        <h2 class="component-name">Basic header</h2>
+        <div class="component-description">Use this for a simple header only with a title</div>
+      </div>
       <demo-snippet>
         <template>
           <adom-header class="basic" title="ADominguez"></adom-header>
@@ -46,15 +72,14 @@
       </demo-snippet>
     </div>
     <div>
+      <div class="component-info">
+        <h2 class="component-name">Header with social icon</h2>
+        <div class="component-description">Add a top container with info about your company, social media...</div>
+      </div>
       <demo-snippet>
         <template>
-          <adom-header
-          class="social"
-          title="ADominguez"
-          logo-src="http://cdn.adominguez.es/wp-content/uploads/2014/10/logo-animacion.gif"
-          social-icons
-          social-msj="Call us today! 1.555.555.5555 | info@yourcompany.com"
-          social-icon="contenido"></adom-header>
+          <adom-header class="social" logo-src="img/logo-web198x70.png" social-icons social-msj="Call us today! 1.555.555.5555 | info@yourcompany.com"
+            social-icon="contenido"></adom-header>
         </template>
       </demo-snippet>
     </div>
@@ -68,14 +93,15 @@
   </adom-demo>
 
   <script>
-  var menu = [
-    {optionName: 'Basic header'},
-    {optionName: 'Header with social icons'},
-    {optionName: 'sidebar menu'}
-  ];
-  var demo = document.getElementById('demo');
-  demo.optionsMenu = menu;
-</script>
+    var menu = [
+      { optionName: 'Basic header' },
+      { optionName: 'Header with social icons' },
+      { optionName: 'sidebar menu' }
+    ];
+    var demo = document.getElementById('demo');
+    demo.optionsMenu = menu;
+
+  </script>
 </body>
 
 </html>
