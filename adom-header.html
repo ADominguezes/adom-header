@@ -113,6 +113,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       .logo {
         -webkit-flex: 1 1 auto;
         flex: 1 1 auto;
+        cursor: pointer;
         @apply(--adom-header-logo);
       }
       .content-right {
@@ -133,7 +134,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       </div>
       <div class="header">
         <iron-icon icon="{{iconNavigation}}" class="icon-navigation" hidden$="{{_navigationHidden()}}" on-tap="_onNavigationChange"></iron-icon>
-        <div class="logo">
+        <div class="logo" on-tap="_onLogoChange">
           <template id="logo-template" is="dom-if" if="{{logoSrc}}">
             <img id="imgLogo" src="{{logoSrc}}" alt="[[altTitle]]" title="[[altTitle]]" />
           </template>
@@ -189,11 +190,11 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
           observer: "_onVerticalChange"
         }
       },
-      ready: function() {
-        
-      },
       _onNavigationChange: function() {
         alert('Hola, pasa por aquí')
+      },
+      _onLogoChange: function() {
+
       },
       _onVerticalChange : function(vertical) {
         if(vertical) {
