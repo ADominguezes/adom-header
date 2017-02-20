@@ -62,7 +62,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         @apply(--adom-header-content);
       }
 
-      :host(.social) .wrapper{
+      :host(.top) .wrapper{
         -webkit-box-shadow: 0px 2px 5px 1px rgba(166,166,166,0.75);
         -moz-box-shadow: 0px 2px 5px 1px rgba(166,166,166,0.75);
         box-shadow: 0px 2px 5px 1px rgba(166,166,166,0.75);
@@ -104,15 +104,24 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         cursor: pointer;
         @apply(--adom-header-icon-navigation);
       }
+      .icon-navigation:focus {
+        @apply(--adom-header-icon-navigation-focus);
+      }
+      .icon-navigation:hover {
+        @apply(--adom-header-icon-navigation-hover);
+      }
       .logo {
         -webkit-flex: 1 1 auto;
         flex: 1 1 auto;
-        width: 30%;
         @apply(--adom-header-logo);
       }
-      .content {
+      .content-right {
         margin-left: auto;
-        @apply(--adom-header-content);
+        text-align: right;
+        @apply(--adom-header-right-content);
+      }
+      .top {
+        @apply(--adom-header-top-content);
       }
       [hidden] {
         display: none;
@@ -120,7 +129,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
     </style>
     <header class="wrapper">
       <div class="top" hidden$="[[!topHeader]]">
-        <content select=".top-header"></content>
+        <content select=".content-top-header"></content>
       </div>
       <div class="header">
         <iron-icon icon="{{iconNavigation}}" class="icon-navigation" hidden$="{{_navigationHidden()}}" on-tap="_onNavigationChange"></iron-icon>
@@ -132,8 +141,8 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
             <h2 id="title" title="[[altTitle]]">[[title]]</h2>
           </template>
         </div>
-        <div class="content">
-          <content></content>
+        <div class="content-right">
+          <content select=".content-right-header"></content>
         </div>
       </div>
     </header>
@@ -147,7 +156,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       properties: {
         /**
          * It Show a top header container for social icons, information...
-         * It allow insert your content with top-header class
+         * It allow insert your content with content-top-header class
          */
         topHeader: {
           type: Boolean,
@@ -193,7 +202,6 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       },
       _navigationHidden : function() {
         var icon = Polymer.dom(this.root).querySelector('iron-icon').icon;
-        console.log(icon)
         if(icon) {
           return false;
         }
