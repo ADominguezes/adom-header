@@ -55,9 +55,9 @@
         color: var(--adom-header-color, #666);
         background: var(--adom-header-background, #fff);
       }
-      --adom-header-social: {
-        background: var(--adom-header-social-background, #a1ce4f);
-        color: var(--adom-header-social-color, #fff)
+      --adom-header-top: {
+        background: var(--adom-header-top-background, #a1ce4f);
+        color: var(--adom-header-top-color, #fff)
       }
     }
 
@@ -81,18 +81,18 @@
   <adom-demo id="demo" option-selected="0">
     <div>
       <div class="component-info">
-        <h2 class="component-name">Basic header</h2>
+        <h2 class="component-name">Basic header with navigation</h2>
         <div class="component-description">Use this for a simple header only with a title</div>
       </div>
       <demo-snippet>
         <template>
-          <adom-header class="basic" title="ADominguez"></adom-header>
+          <adom-header class="basic" title="ADominguez" icon-navigation="menu"></adom-header>
         </template>
       </demo-snippet>
     </div>
     <div>
       <div class="component-info">
-        <h2 class="component-name">Header with social icon</h2>
+        <h2 class="component-name">Header with top header content</h2>
         <div class="component-description">Add a top container with info about your company, social media...</div>
       </div>
       <demo-snippet>
@@ -101,9 +101,10 @@
           class="social" 
           logo-src="img/logo-web198x70.png" 
           title="Hola"
-          social-icons social-text="Call us today! 1.555.555.5555 | info@yourcompany.com"
-          social-icon="contenido">
-            Aquí va el contenido
+          top-header>
+            <div class="top-header">
+              Contenido
+            </div>
           </adom-header>
         </template>
       </demo-snippet>
@@ -111,7 +112,10 @@
     <div>
       <demo-snippet>
         <template>
-          <adom-header logo-src="https://vitocornejo.files.wordpress.com/2016/08/garmin-logo-blanco.png" vertical social-icons>
+          <adom-header 
+          logo-src="https://vitocornejo.files.wordpress.com/2016/08/garmin-logo-blanco.png" 
+          vertical
+          icon-navigation="menu">
           Aquí va el contenido
           </adom-header>
           Contenido que debe de ir en la parte derecha

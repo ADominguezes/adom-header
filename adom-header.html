@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-image/iron-image.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
 
 <!--
 `adom-header` is component for to use in top header of website. You can add a title, logo, social icons...
@@ -34,10 +35,6 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
 <dom-module id="adom-header">
   <template>
     <style>
-      [hidden] {
-        display: none;
-      }
-
 
       :host(.vertical) .wrapper {
         width: 300px;
@@ -65,7 +62,6 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         @apply(--adom-header-content);
       }
 
-
       :host(.social) .wrapper{
         -webkit-box-shadow: 0px 2px 5px 1px rgba(166,166,166,0.75);
         -moz-box-shadow: 0px 2px 5px 1px rgba(166,166,166,0.75);
@@ -77,7 +73,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       .wrapper {
         @apply(--adom-header-wrapper);
       }
-      .top-social {
+      .top {
         width:100%;
         -webkit-flex-direction: row;
         flex-direction: row;
@@ -86,18 +82,9 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         display: flex;
         padding:0.5em;
         box-sizing: border-box;
-        color: var(--adom-header-social-color, #fff);
-        background: var(--adom-header-social-background, #2ba14b);
-        @apply(--adom-header-social);
-      }
-      .social-text {
-        -webkit-flex: 1 1 auto;
-        flex: 1 1 auto;
-        @apply(--adom-header-wrapper-social-text);
-      }
-      .social-icon {
-        margin-left: auto;
-        @apply(--adom-header-wrapper-social-icon);
+        color: var(--adom-header-top-color, #fff);
+        background: var(--adom-header-top-background, #2ba14b);
+        @apply(--adom-header-top);
       }
       .header {
         width:100%;
@@ -112,6 +99,11 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         background: var(--adom-header-background, #4184F3);
         @apply(--adom-header-header);
       }
+      .icon-navigation {
+        padding:1em;
+        cursor: pointer;
+        @apply(--adom-header-icon-navigation);
+      }
       .logo {
         -webkit-flex: 1 1 auto;
         flex: 1 1 auto;
@@ -120,21 +112,18 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       }
       .content {
         margin-left: auto;
-        @apply(--adom-header-content)
+        @apply(--adom-header-content);
+      }
+      [hidden] {
+        display: none;
       }
     </style>
     <header class="wrapper">
-      <!--<template is="dom-if" if="[[socialIcons]]">
-        <div class="top-social">
-          <div class="social-text">
-            {{socialText}}
-          </div>
-          <div class="social-icon">
-            {{socialIcon}}
-          </div>
-        </div>
-      </template>-->
+      <div class="top" hidden$="[[!topHeader]]">
+        <content select=".top-header"></content>
+      </div>
       <div class="header">
+        <iron-icon icon="{{iconNavigation}}" class="icon-navigation" hidden$="{{_navigationHidden()}}" on-tap="_onNavigationChange"></iron-icon>
         <div class="logo">
           <template id="logo-template" is="dom-if" if="{{logoSrc}}">
             <img id="imgLogo" src="{{logoSrc}}" />
@@ -157,19 +146,19 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
 
       properties: {
         /**
-         * Show a social message
+         * It Show a top header container for social icons, information...
+         * It allow insert your content with top-header class
          */
-        socialText: {
-          type: String
+        topHeader: {
+          type: Boolean,
+          value:false
         },
         /**
-         * Show a toolbar social icon in top if is true.
+         * name icon for navigation.
          */
-        socialIcons: {
-          type: Boolean
-        },
-        socialIcon: {
-          type: String
+        iconNavigation: {
+          type: String,
+          value: ''
         },
         /**
          * Title of header.
@@ -181,8 +170,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
          * The URL of logo.
          */
         logoSrc: {
-          type: String,
-          observer: "_onLogoChange"
+          type: String
         },
         vertical: {
           type: Boolean,
@@ -192,19 +180,21 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       ready: function() {
         
       },
+      _onNavigationChange: function() {
+        alert('Hola, pasa por aquí')
+      },
       _onVerticalChange : function(vertical) {
         if(vertical) {
           this.classList.add("vertical")
         }
       },
-      _onLogoChange: function(e) {
-        console.log(e)
-        var logo = Polymer.dom(this.root).querySelector("#logo-template");
-        console.log(this.$);
-        //console.log(this.$$('.title'))
-        logo.addEventListener('dom-change', function(e) {
-          //console.log(logo.$.imgLogo);
-        });
+      _navigationHidden : function() {
+        var icon = Polymer.dom(this.root).querySelector('iron-icon').icon;
+        console.log(icon)
+        if(icon) {
+          return false;
+        }
+        return true;
       }
 
     });
