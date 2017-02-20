@@ -35,6 +35,11 @@
     .component-description {
       color: #999;
     }
+    demo-snippet {
+      --demo-snippet-demo: {
+        display:block;
+      };
+    }
     
     .basic {
       --adom-header: {
@@ -43,13 +48,8 @@
         background: var(--adom-header-background, #4184F3);
       }
     }
-    demo-snippet {
-      --demo-snippet-demo: {
-        display:block;
-      };
-    }
     
-    .social {
+    .top {
       --adom-header-header: {
         padding: 1em;
         color: var(--adom-header-color, #666);
@@ -98,9 +98,9 @@
       <demo-snippet>
         <template>
           <adom-header 
-          class="social" 
-          logo-src="img/logo-web198x70.png" 
-          title="Hola"
+          class="top" 
+          logo-src="img/logo-web198x70.png"
+          alt-title="ADominguez"
           top-header>
             <div class="top-header">
               Contenido

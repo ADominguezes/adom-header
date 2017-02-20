@@ -126,10 +126,10 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         <iron-icon icon="{{iconNavigation}}" class="icon-navigation" hidden$="{{_navigationHidden()}}" on-tap="_onNavigationChange"></iron-icon>
         <div class="logo">
           <template id="logo-template" is="dom-if" if="{{logoSrc}}">
-            <img id="imgLogo" src="{{logoSrc}}" />
+            <img id="imgLogo" src="{{logoSrc}}" alt="[[altTitle]]" title="[[altTitle]]" />
           </template>
           <template is="dom-if" if="{{title}}">
-            <h2 id="title">[[title]]</h2>
+            <h2 id="title" title="[[altTitle]]">[[title]]</h2>
           </template>
         </div>
         <div class="content">
@@ -170,6 +170,9 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
          * The URL of logo.
          */
         logoSrc: {
+          type: String
+        },
+        altTitle: {
           type: String
         },
         vertical: {
