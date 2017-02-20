@@ -2,25 +2,78 @@
 <link rel="import" href="../iron-image/iron-image.html">
 
 <!--
-`adom-header`
-Header for a website
+`adom-header` is component for to use in top header of website. You can add a title, logo, social icons...
 
-@demo demo/index.html 
+`adom-header`.
+
+Example:
+
+    <adom-header title="Your title" logo="your-logo.jpg">
+    </adom-header>
+
+### Styling
+
+The following custom properties and mixins are available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--adom-header-wrapper` | Mixin applied to wrapper of header | `{}`
+`--adom-header-social` | Mixin applied to social content | `{}`
+`--adom-header-social-color` | Color of social content | `#fff`
+`--adom-header-social-background` | background color of social content | `{}`
+`--adom-header-header` | background color of social content | `{}`
+`--adom-header-social-background` | background color of social content | `{}`
+`--adom-header-social-background` | background color of social content | `{}`
+
+This element applies the mixin `--paper-font-common-base` but does not import `paper-styles/typography.html`.
+In order to apply the `Roboto` font to this element, make sure you've imported `paper-styles/typography.html`.
+
+@demo demo/index.html
 -->
 
 <dom-module id="adom-header">
   <template>
     <style>
+      [hidden] {
+        display: none;
+      }
+
+
+      :host(.vertical) .wrapper {
+        width: 300px;
+        flex: 1 1 auto;
+        @apply(--adom-header-wrapper);
+      }
+      :host(.vertical) img {
+        width: 100%;
+      }
+      :host(.vertical) .header {
+        width:100%;
+        padding:0.5em;
+        box-sizing: border-box;
+        display:inline-block;
+        color: var(--adom-header-color, #fff);
+        background: var(--adom-header-background, #4184F3);
+        @apply(--adom-header-header);
+      }
+      :host(.vertical) .logo {
+        width: 100%;
+        @apply(--adom-header-logo);
+      }
+      :host(.vertical) .content {
+        width:100%;
+        @apply(--adom-header-content);
+      }
+
 
       :host(.social) .wrapper{
         -webkit-box-shadow: 0px 2px 5px 1px rgba(166,166,166,0.75);
         -moz-box-shadow: 0px 2px 5px 1px rgba(166,166,166,0.75);
         box-shadow: 0px 2px 5px 1px rgba(166,166,166,0.75);
-        @apply(--adom-header-social-wrapper);
+        @apply(--adom-header-wrapper);
       }
-      [hidden] {
-        display: none;
-      }
+
+
       .wrapper {
         @apply(--adom-header-wrapper);
       }
@@ -37,12 +90,14 @@ Header for a website
         background: var(--adom-header-social-background, #2ba14b);
         @apply(--adom-header-social);
       }
-      .social-msj {
+      .social-text {
         -webkit-flex: 1 1 auto;
         flex: 1 1 auto;
+        @apply(--adom-header-wrapper-social-text);
       }
       .social-icon {
         margin-left: auto;
+        @apply(--adom-header-wrapper-social-icon);
       }
       .header {
         width:100%;
@@ -68,31 +123,31 @@ Header for a website
         @apply(--adom-header-content)
       }
     </style>
-    <div class="wrapper">
-      <template is="dom-if" if="[[socialIcons]]">
+    <header class="wrapper">
+      <!--<template is="dom-if" if="[[socialIcons]]">
         <div class="top-social">
-          <div class="social-msj">
-            {{socialMsj}}
+          <div class="social-text">
+            {{socialText}}
           </div>
           <div class="social-icon">
             {{socialIcon}}
           </div>
         </div>
-      </template>
+      </template>-->
       <div class="header">
         <div class="logo">
-          <template is="dom-if" if="{{logoSrc}}">
-            <iron-image src="{{logoSrc}}"></iron-image>
+          <template id="logo-template" is="dom-if" if="{{logoSrc}}">
+            <img id="imgLogo" src="{{logoSrc}}" />
           </template>
           <template is="dom-if" if="{{title}}">
-            <h2>[[title]]</h2>
+            <h2 id="title">[[title]]</h2>
           </template>
         </div>
         <div class="content">
           <content></content>
         </div>
       </div>
-    </div>
+    </header>
   </template>
 
   <script>
@@ -104,15 +159,14 @@ Header for a website
         /**
          * Show a social message
          */
-        socialMsj: {
+        socialText: {
           type: String
         },
         /**
          * Show a toolbar social icon in top if is true.
          */
         socialIcons: {
-          type: Boolean,
-          value: false
+          type: Boolean
         },
         socialIcon: {
           type: String
@@ -127,9 +181,31 @@ Header for a website
          * The URL of logo.
          */
         logoSrc: {
-          type: String
+          type: String,
+          observer: "_onLogoChange"
+        },
+        vertical: {
+          type: Boolean,
+          observer: "_onVerticalChange"
         }
       },
+      ready: function() {
+        
+      },
+      _onVerticalChange : function(vertical) {
+        if(vertical) {
+          this.classList.add("vertical")
+        }
+      },
+      _onLogoChange: function(e) {
+        console.log(e)
+        var logo = Polymer.dom(this.root).querySelector("#logo-template");
+        console.log(this.$);
+        //console.log(this.$$('.title'))
+        logo.addEventListener('dom-change', function(e) {
+          //console.log(logo.$.imgLogo);
+        });
+      }
 
     });
   </script>

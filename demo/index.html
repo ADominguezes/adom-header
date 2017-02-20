@@ -8,6 +8,13 @@
   <title>adom-header demo</title>
 
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script>
+    window.Polymer = {
+      dom: 'shadow',
+      lazyRegister: 'true',
+      useNativeCSSProperties: 'true'
+    }
+  </script>
 
   <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
   <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
@@ -48,6 +55,13 @@
         color: var(--adom-header-social-color, #fff)
       }
     }
+
+    .vertical {
+      --adom-header-header: {
+        width: 300px;
+        background: var(--adom-header-background, #e63125);
+      }
+    }
     
     adom-header {
       --adom-header-content: {
@@ -78,15 +92,24 @@
       </div>
       <demo-snippet>
         <template>
-          <adom-header class="social" logo-src="img/logo-web198x70.png" social-icons social-msj="Call us today! 1.555.555.5555 | info@yourcompany.com"
-            social-icon="contenido"></adom-header>
+          <adom-header 
+          class="social" 
+          logo-src="img/logo-web198x70.png" 
+          title="Hola"
+          social-icons social-text="Call us today! 1.555.555.5555 | info@yourcompany.com"
+          social-icon="contenido">
+            Aquí va el contenido
+          </adom-header>
         </template>
       </demo-snippet>
     </div>
     <div>
       <demo-snippet>
         <template>
-          <adom-header></adom-header>
+          <adom-header logo-src="https://vitocornejo.files.wordpress.com/2016/08/garmin-logo-blanco.png" vertical social-icons>
+          Aquí va el contenido
+          </adom-header>
+          Contenido que debe de ir en la parte derecha
         </template>
       </demo-snippet>
     </div>
