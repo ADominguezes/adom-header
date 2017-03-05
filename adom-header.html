@@ -88,6 +88,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       }
       .header {
         width:100%;
+        flex-wrap: wrap;
         -webkit-flex-direction: row;
         flex-direction: row;
         display: -webkit-flex;
@@ -97,6 +98,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         box-sizing: border-box;
         color: var(--adom-header-color, #fff);
         background: var(--adom-header-background, #4184F3);
+        align-items: center;
         @apply(--adom-header-header);
       }
       .icon-navigation {
@@ -111,14 +113,18 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         @apply(--adom-header-icon-navigation-hover);
       }
       .logo {
-        -webkit-flex: 1 1 auto;
-        flex: 1 1 auto;
+        display: flex;
         cursor: pointer;
+        align-items: center;
         @apply(--adom-header-logo);
       }
+      .title {
+        margin: 0.2em;
+        @apply(--adom-header-title);
+      }
       .content-right {
-        margin-left: auto;
-        text-align: right;
+        display: flex;
+        margin: 0.2em;
         @apply(--adom-header-right-content);
       }
       .top {
@@ -139,7 +145,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
             <img id="imgLogo" src="{{logoSrc}}" alt="[[altTitle]]" title="[[altTitle]]" />
           </template>
           <template is="dom-if" if="{{title}}">
-            <h2 id="title" title="[[altTitle]]">[[title]]</h2>
+            <h2 id="title" class="title" title="[[altTitle]]">[[title]]</h2>
           </template>
         </div>
         <div class="content-right">
@@ -194,7 +200,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         this.fire('adom-header-icon-navigation')
       },
       _onLogoChange: function() {
-
+        this.fire('adom-header-logo-change')
       },
       _onVerticalChange : function(vertical) {
         if(vertical) {
