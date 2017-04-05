@@ -7,7 +7,7 @@
 
   <title>adom-header demo</title>
 
-  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   <script>
     window.Polymer = {
       dom: 'shadow',
@@ -16,9 +16,9 @@
     }
   </script>
 
-  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-  <link rel="import" href="../../adom-demo/adom-demo.html">
+  <link rel="import" href="../bower_components/iron-demo-helpers/demo-pages-shared-styles.html">
+  <link rel="import" href="../bower_components/iron-demo-helpers/demo-snippet.html">
+  <link rel="import" href="../bower_components/adom-demo/adom-demo.html">
   <link rel="import" href="../adom-header.html">
 
   <style is="custom-style" include="demo-pages-shared-styles">
@@ -28,51 +28,18 @@
       padding: 1em;
     }
     
-    .component-name {
+    .adom-header {
       color: #3e3e3e;
     }
     
     .component-description {
       color: #999;
     }
+    
     demo-snippet {
       --demo-snippet-demo: {
-        display:block;
+        display: block;
       };
-    }
-    
-    .basic {
-      --adom-header: {
-        padding: 1em;
-        color: var(--adom-header-color, #fff);
-        background: var(--adom-header-background, #4184F3);
-      }
-    }
-    
-    .top {
-      --adom-header-header: {
-        padding: 1em;
-        color: var(--adom-header-color, #666);
-        background: var(--adom-header-background, #fff);
-      }
-      --adom-header-top: {
-        background: var(--adom-header-top-background, #a1ce4f);
-        color: var(--adom-header-top-color, #fff)
-      }
-    }
-
-    .vertical {
-      --adom-header-header: {
-        width: 300px;
-        background: var(--adom-header-background, #e63125);
-      }
-    }
-    
-    adom-header {
-      --adom-header-content: {
-        -webkit-flex: 1 1 auto;
-        flex: 1 1 auto;
-      }
     }
   </style>
 </head>
@@ -81,65 +48,52 @@
   <adom-demo id="demo" option-selected="0">
     <div>
       <div class="component-info">
-        <h2 class="component-name">Basic header with navigation</h2>
+        <h2 class="adom-header">Basic header</h2>
         <div class="component-description">
-          <p>Use this for a simple header only with a title</p>
-          <p>Import an iconset if you want to use de icon-navigation property in your proyect, for example, you can import polymer component <a href="https://www.webcomponents.org/element/PolymerElements/iron-icons" target="_blank">iron-icons</a> for his use.</p>
+          <p>Components description demo</p>
         </div>
       </div>
       <demo-snippet>
         <template>
-          <adom-header class="basic" title="ADominguez" icon-navigation="menu"></adom-header>
+          <adom-header heading="Heading"></adom-header>
         </template>
       </demo-snippet>
     </div>
     <div>
       <div class="component-info">
-        <h2 class="component-name">Header with top header content</h2>
-        <div class="component-description">Add a top container with info about your company, social media...</div>
+        <h2 class="adom-header">Header with logo</h2>
+        <div class="component-description">
+          <p>Components description demo</p>
+        </div>
       </div>
       <demo-snippet>
         <template>
-          <adom-header 
-          class="top" 
-          logo-src="img/logo-web198x70.png"
-          title="adominguez"
-          alt-title="ADominguez"
-          top-header>
-            <div class="content-top-header">
-              Top content
-            </div>
-            <div class="content-right-header">
-              Right content
-            </div>
-          </adom-header>
+          <adom-header img-src="http://d18hrjrodoay6x.cloudfront.net/wp-content/themes/creaweb_v1/img/logofooter_crea_EN.png"></adom-header>
         </template>
       </demo-snippet>
     </div>
     <div>
+      <div class="component-info">
+        <h2 class="adom-header">Header with navigation button</h2>
+        <div class="component-description">
+          <p>Components description demo</p>
+        </div>
+      </div>
       <demo-snippet>
         <template>
-          <adom-header 
-          logo-src="https://vitocornejo.files.wordpress.com/2016/08/garmin-logo-blanco.png" 
-          vertical
-          icon-navigation="menu">
-          Aquí va el contenido
-          </adom-header>
-          Contenido que debe de ir en la parte derecha
+          <adom-header heading="Heading" icon-navigation="menu"></adom-header>
         </template>
       </demo-snippet>
     </div>
   </adom-demo>
-
   <script>
     var menu = [
       { optionName: 'Basic header' },
-      { optionName: 'Header with social icons' },
-      { optionName: 'sidebar menu' }
+      { optionName: 'Header with logo' },
+      { optionName: 'Header with navigation button' }
     ];
     var demo = document.getElementById('demo');
     demo.optionsMenu = menu;
-
   </script>
 </body>
 

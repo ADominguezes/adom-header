@@ -1,0 +1,49 @@
+<dom-module id="adom-header-styles"><template><style>
+:host([hidden]) {
+  display: none; }
+
+:host {
+  display: block;
+  box-sizing: border-box;
+  background: white;
+  min-height: 44px;
+  color: #363737; }
+
+.header {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row; }
+  .header__left-content {
+    width: 33%;
+    display: -ms-flexbox;
+    display: flex; }
+    .header__left-content__button-navigation {
+      padding: 0.5em; }
+    .header__left-content__logo {
+      margin-left: 8px;
+      height: 44px;
+      line-height: 44px;
+      white-space: nowrap; }
+    .header__left-content__heading {
+      font-size: 1.2em;
+      text-transform: capitalize;
+      margin-left: 8px;
+      height: 44px;
+      line-height: 44px;
+      white-space: nowrap; }
+  .header__center-content {
+    width: 33%; }
+  .header__right-content {
+    width: 33%;
+    text-align: right; }
+
+button {
+  background: transparent;
+  padding: 10px;
+  border: 0;
+  cursor: pointer; }
+
+</style>
+</template>
+</dom-module>

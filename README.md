@@ -1,38 +1,28 @@
 # \<adom-header\>
 
-Header for a website
+description
 
-## Install the Polymer-CLI
+## Using the quickly starter kit for a polymer element
 
-First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your application locally.
+Create a new folder for your component in your prefer directory.
 
-## Viewing Your Application
+    $ mkdir adom-header
+    $ cd adom-header
 
-```
-$ polymer serve
-```
+clone this repository in your local machine
+
+    $ git clone https://Adominguezes@bitbucket.org/Adominguezes/default-component-polymer.git
+
+Now, serve your component with:
+
+    $ npm run deps
+
+## Serving your Application
+
+You can serve your application with:
+
+    $ gulp serve
 
 ## Building Your Application
 
-```
-$ polymer build
-```
-
-This will create a `build/` folder with `bundled/` and `unbundled/` sub-folders
-containing a bundled (Vulcanized) and unbundled builds, both run through HTML,
-CSS, and JS optimizers.
-
-You can serve the built versions by giving `polymer serve` a folder to serve
-from:
-
-```
-$ polymer serve build/bundled
-```
-
-## Running Tests
-
-```
-$ polymer test
-```
-
-Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.
+The application goes building while you build your application, you can check your application in `dist` folder.
