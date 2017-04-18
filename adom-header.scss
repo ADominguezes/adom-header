@@ -7,40 +7,101 @@
   box-sizing: border-box;
   background: white;
   min-height: 44px;
-  color: #363737;
+  padding: 0.5em;
+  color: var(--adom-header-color, #363737);
+  background-color: var(--adom-header-bg-color, #fff);
+  @apply(--adom-header);
+}
+
+:host([fixed]) {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  @apply(--adom-header-fixed);
+}
+
+:host([with-shadow]) {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  @apply(--adom-header-with-shadow);
 }
 
 .header {
   display: flex;
   flex-direction: row;
+  @apply(--adom-header-header);
   
   &__left-content {
-    width: 33%;
+    width: var(--adom-header-header-left-content-width, 33%);
     display: flex;
+    @apply(--adom-header-header-left-content);
     &__button-navigation {
       padding: 0.5em;
+      color: var(--adom-header-header-left-content-button-navigation-color, #363737);
+      @apply(--adom-header-header-left-content-button-navigation);
     }
     &__logo {
       margin-left: 8px;
       height:44px;
       line-height: 44px;
       white-space: nowrap;
+      @apply(--adom-header-header-left-content-logo);
     }
     &__heading {
-      font-size: 1.2em;
+      font-size: 1.4em;
       text-transform: capitalize;
       margin-left: 8px;
       height:44px;
       line-height: 44px;
       white-space: nowrap;
+      @apply(--adom-header-header-left-content-heading);
     }
   }
   &__center-content {
-    width: 33%;
+    width: var(--adom-header-header-center-content-width, 33%);
+    justify-content: center;
+    align-items: center;
+    @apply(--adom-header-header-center-content);
   }
   &__right-content {
-    width: 33%;
+    width: var(--adom-header-header-right-content-width, 33%);
     text-align: right;
+    @apply(--adom-header-header-right-content);
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    display: flex;
+    margin: 0.5em;
+    flex-direction: column-reverse;
+    
+    &__left-content {
+      margin: 0.5em;
+      width: 100%;
+      &__logo {
+        margin-left: 8px;
+        height:44px;
+        line-height: 44px;
+        white-space: nowrap;
+      }
+      &__heading {
+        font-size: 1.4em;
+        text-transform: capitalize;
+        margin-left: 8px;
+        height:44px;
+        line-height: 44px;
+        white-space: nowrap;
+      }
+    }
+    &__center-content {
+      margin: 0.5em;
+      width:100%;
+    }
+    &__right-content {
+      margin: 0.5em;
+      width:100%
+    }
   }
 }
 

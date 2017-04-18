@@ -23,6 +23,9 @@
       altImage: {
         type: String
       },
+      fixed: {
+        type: Boolean
+      },
       imgSrc: {
         type: String,
         value: '',

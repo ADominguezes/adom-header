@@ -55,7 +55,7 @@
       </div>
       <demo-snippet>
         <template>
-          <adom-header heading="Heading"></adom-header>
+          <adom-header heading="Heading" with-shadow></adom-header>
         </template>
       </demo-snippet>
     </div>
@@ -85,12 +85,107 @@
         </template>
       </demo-snippet>
     </div>
+    <div>
+      <div class="component-info">
+        <h2 class="adom-header">Header with center content and right content</h2>
+        <div class="component-description">
+          <p>Components description demo</p>
+        </div>
+      </div>
+      <demo-snippet>
+        <template>
+          <style is="custom-style">
+            .center-content {
+              display: flex;
+              justify-content: center;
+            }
+            
+            .search-box {
+              border: 1px solid #ababab;
+              padding: 10px;
+              width: 100%;
+              font-size: 1em;
+            }
+            
+            button {
+              background-color: #1081C2;
+              padding: 10px;
+              font-size: 1em;
+              color: #fff;
+              border: none;
+            }
+          </style>
+          <adom-header heading="Heading" icon-navigation="menu">
+            <div class="center-content">
+              <input type="search" role="search" title="Search query" id="search-input" placeholder="Search custom elements" class="search-box">
+            </div>
+            <div class="right-content">
+              <button>
+                Register
+              </button>
+            </div>
+          </adom-header>
+        </template>
+      </demo-snippet>
+    </div>
+    <div>
+      <div class="component-info">
+        <h2 class="adom-header">Responsive and custom header</h2>
+        <div class="component-description">
+          <p>Components description demo</p>
+        </div>
+      </div>
+      <demo-snippet>
+        <template is="dom-bind">
+          <style is="custom-style">
+            .custom {
+              --adom-header-color: #FAFAFA;
+              --adom-header-bg-color: #363737;
+              --adom-header-header-left-content-button-navigation-color: #FAFAFA;
+              --adom-header-header-left-content-width: 20%;
+              --adom-header-header-right-content-width: 46%;
+            }
+            .center-content {
+              display: flex;
+              justify-content: center;
+            }
+            
+            .search-box {
+              border: 1px solid #ababab;
+              padding: 10px;
+              width: 100%;
+              font-size: 1em;
+            }
+            
+            button {
+              background-color: #1081C2;
+              padding: 10px;
+              font-size: 1em;
+              color: #fff;
+              border: none;
+            }
+          </style>
+          <adom-header class="custom" heading="Heading" icon-navigation="menu">
+            <div class="center-content">
+              <input type="search" role="search" title="Search query" id="search-input" placeholder="Search custom elements" class="search-box">
+            </div>
+            <div class="right-content">
+              <button>
+                Register
+              </button>
+            </div>
+          </adom-header>
+        </template>
+      </demo-snippet>
+    </div>
   </adom-demo>
   <script>
     var menu = [
       { optionName: 'Basic header' },
       { optionName: 'Header with logo' },
-      { optionName: 'Header with navigation button' }
+      { optionName: 'Header with navigation button' },
+      { optionName: 'Header with center content and right content' },
+      { optionName: 'Responsive and custom header' }
     ];
     var demo = document.getElementById('demo');
     demo.optionsMenu = menu;
